@@ -7,7 +7,7 @@ import java.util.Date;
 @Table(name = "CREDIT_CARD")
 public class CreditCard {
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user_id;
 
