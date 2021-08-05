@@ -12,7 +12,7 @@ public class CreditCard {
     private User user_id;
 
     @Id
-    private Integer card_number;
+    private String card_number;
 
     private Float account_limit;
 
@@ -42,11 +42,11 @@ public class CreditCard {
         this.user_id = user_id;
     }
 
-    public Integer getCard_number() {
+    public String getCard_number() {
         return card_number;
     }
 
-    public void setCard_number(Integer card_number) {
+    public void setCard_number(String card_number) {
         this.card_number = card_number;
     }
 

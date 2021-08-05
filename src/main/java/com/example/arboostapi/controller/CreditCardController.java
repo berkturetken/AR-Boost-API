@@ -16,12 +16,12 @@ public class CreditCardController {
     private CreditCardRepository creditCardRepository;
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addCreditCard (@RequestParam Integer card_number, @RequestParam Float account_limit, @RequestParam Float debt) {
+    public @ResponseBody String addCreditCard (@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt) {
         CreditCard creditCard = new CreditCard();
-        // test
+
         User user = new User();
-        user.setName("Test");
-        user.setSurname("TestSurname");
+        user.setName("Test2");
+        user.setSurname("TestSurname2");
 
         creditCard.setUser_id(user);
         creditCard.setCard_number(card_number);
