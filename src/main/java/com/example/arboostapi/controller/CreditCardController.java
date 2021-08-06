@@ -15,6 +15,7 @@ public class CreditCardController {
     @Autowired
     private CreditCardRepository creditCardRepository;
 
+
     @PostMapping(path = "/add")
     public @ResponseBody String addCreditCard (@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
                                                @RequestParam Boolean is_contactless, @RequestParam Boolean is_ecom,
@@ -45,8 +46,16 @@ public class CreditCardController {
         return "Credit card is saved successfully :)";
     }
 
+
     @GetMapping(path = "/all")
     public @ResponseBody Iterable<CreditCard> getAllCreditCards() {
         return creditCardRepository.findAll();
     }
+
+
+    @GetMapping(path="/{card_number}")
+    public @ResponseBody CreditCard getCreditCard(@PathVariable String card_number) {
+        return creditCardRepository.findById(card_number).get();
+    }
+
 }
