@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 
-@Controller
+@RestController
 @RequestMapping(path = "/creditcard")
 public class CreditCardController {
     @Autowired
@@ -17,15 +17,15 @@ public class CreditCardController {
 
 
     @PostMapping(path = "/add")
-    public @ResponseBody String addCreditCard (@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
+    public String addCreditCard (@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
                                                @RequestParam Boolean is_contactless, @RequestParam Boolean is_ecom,
                                                @RequestParam Boolean mail_order, @RequestParam Boolean e_account_statement)
     {
         CreditCard creditCard = new CreditCard();
 
         User user = new User();
-        user.setName("Elif");
-        user.setSurname("Kara");
+        user.setName("testUser");
+        user.setSurname("testSurname");
 
         creditCard.setUser_id(user);
         creditCard.setCard_number(card_number);
@@ -48,13 +48,13 @@ public class CreditCardController {
 
 
     @GetMapping(path = "/all")
-    public @ResponseBody Iterable<CreditCard> getAllCreditCards() {
+    public Iterable<CreditCard> getAllCreditCards() {
         return creditCardRepository.findAll();
     }
 
 
     @GetMapping(path="/{card_number}")
-    public @ResponseBody CreditCard getCreditCard(@PathVariable String card_number) {
+    public CreditCard getCreditCard(@PathVariable String card_number) {
         return creditCardRepository.findById(card_number).get();
     }
 
