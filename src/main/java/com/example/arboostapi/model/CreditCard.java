@@ -30,7 +30,7 @@ public class CreditCard {
 
     private Boolean mail_order;
 
-    private Boolean e_account_statement;
+    private String e_account_statement;
 
 
     // Getters and Setters
@@ -114,11 +114,11 @@ public class CreditCard {
         this.mail_order = mail_order;
     }
 
-    public Boolean getE_account_statement() {
+    public String getE_account_statement() {
         return e_account_statement;
     }
 
-    public void setE_account_statement(Boolean e_account_statement) {
+    public void setE_account_statement(String e_account_statement) {
         this.e_account_statement = e_account_statement;
     }
 }

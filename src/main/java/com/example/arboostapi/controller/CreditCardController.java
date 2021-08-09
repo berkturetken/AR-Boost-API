@@ -4,10 +4,11 @@ import com.example.arboostapi.model.CreditCard;
 import com.example.arboostapi.model.User;
 import com.example.arboostapi.repository.CreditCardRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
+
+// Main functionality of a Controller: Take a request and return a response!
 
 @RestController
 @RequestMapping(path = "/creditcard")
@@ -15,17 +16,24 @@ public class CreditCardController {
     @Autowired
     private CreditCardRepository creditCardRepository;
 
+    // Alternative: Use constructor injection for the dependencies
+    /*
+    private final CreditCardRepository creditCardRepository;
+    public CreditCardController(CreditCardRepository creditCardRepository) {
+        this.creditCardRepository = creditCardRepository;
+    }
+    */
 
     @PostMapping(path = "/add")
     public String addCreditCard (@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
                                                @RequestParam Boolean is_contactless, @RequestParam Boolean is_ecom,
-                                               @RequestParam Boolean mail_order, @RequestParam Boolean e_account_statement)
+                                               @RequestParam Boolean mail_order, @RequestParam String e_account_statement)
     {
         CreditCard creditCard = new CreditCard();
 
         User user = new User();
-        user.setName("testUser");
-        user.setSurname("testSurname");
+        user.setName("Anıl");
+        user.setSurname("Erdoğan");
 
         creditCard.setUser_id(user);
         creditCard.setCard_number(card_number);
