@@ -13,7 +13,7 @@ public class Transaction {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "card_number", referencedColumnName = "card_number")
-    private Card card_number;
+    private Card card;
 
     private String sector;
 
@@ -25,6 +25,8 @@ public class Transaction {
 
     private Float world_point;
 
+
+    // Getters and Setters
     public Integer getTransaction_id() {
         return transaction_id;
     }
@@ -33,12 +35,12 @@ public class Transaction {
         this.transaction_id = transaction_id;
     }
 
-    public Card getCard_number() {
-        return card_number;
+    public Card getCard() {
+        return card;
     }
 
-    public void setCard_number(Card card_number) {
-        this.card_number = card_number;
+    public void setCard(Card card) {
+        this.card = card;
     }
 
     public String getSector() {

@@ -13,6 +13,8 @@ public class User {
 
     private String surname;
 
+
+    // Getters and Setters
     public Integer getId() {
         return id;
     }

@@ -25,15 +25,15 @@ public class CardController {
     */
 
     @PostMapping(path = "/add")
-    public String addCreditCard (@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
+    public String addCard (@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
                                                @RequestParam Boolean is_contactless, @RequestParam Boolean is_ecom,
                                                @RequestParam Boolean mail_order, @RequestParam String e_account_statement)
     {
         Card card = new Card();
 
         User user = new User();
-        user.setName("Anıl");
-        user.setSurname("Erdoğan");
+        user.setName("Egecan");
+        user.setSurname("Ceylan");
 
         card.setUser_id(user);
         card.setCard_number(card_number);
@@ -56,16 +56,15 @@ public class CardController {
 
 
     @GetMapping(path = "/all")
-    public Iterable<Card> getAllCreditCards() {
+    public Iterable<Card> getAllCards() {
         return cardRepository.findAll();
     }
 
 
     @GetMapping(path="/info")
-    public Card getCreditCard(@RequestBody Card card) {
+    public Card getCard(@RequestBody Card card) {
         //System.out.println(card.getCard_number());
         String card_number = card.getCard_number();
         return cardRepository.findById(card_number).get();
     }
-
 }

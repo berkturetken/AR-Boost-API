@@ -40,6 +40,8 @@ public class Card {
 
     private Float flexible_account_limit;
 
+
+    // Getters and Setters
     public String getType() {
         return type;
     }
