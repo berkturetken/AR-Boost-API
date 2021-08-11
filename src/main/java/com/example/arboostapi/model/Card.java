@@ -4,8 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-@Table(name = "CREDIT_CARD")
-public class CreditCard {
+@Table(name = "CARD")
+public class Card {
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -13,6 +13,8 @@ public class CreditCard {
 
     @Id
     private String card_number;
+
+    private String type;
 
     private Float account_limit;
 
@@ -32,6 +34,43 @@ public class CreditCard {
 
     private String e_account_statement;
 
+    private String account_number;
+
+    private Float balance;
+
+    private Float flexible_account_limit;
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getAccount_number() {
+        return account_number;
+    }
+
+    public void setAccount_number(String account_number) {
+        this.account_number = account_number;
+    }
+
+    public Float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Float balance) {
+        this.balance = balance;
+    }
+
+    public Float getFlexible_account_limit() {
+        return flexible_account_limit;
+    }
+
+    public void setFlexible_account_limit(Float flexible_account_limit) {
+        this.flexible_account_limit = flexible_account_limit;
+    }
 
     // Getters and Setters
     public User getUser_id() {
