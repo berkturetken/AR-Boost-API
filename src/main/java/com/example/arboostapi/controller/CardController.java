@@ -3,7 +3,11 @@ package com.example.arboostapi.controller;
 import com.example.arboostapi.model.Card;
 import com.example.arboostapi.model.User;
 import com.example.arboostapi.repository.CardRepository;
+import com.example.arboostapi.service.CardService;
+import com.example.arboostapi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
@@ -16,6 +20,8 @@ public class CardController {
     @Autowired
     private CardRepository cardRepository;
 
+    private CardService cardService;
+
     // Alternative: Use constructor injection for the dependencies
     /*
     private final CreditCardRepository creditCardRepository;
@@ -25,46 +31,49 @@ public class CardController {
     */
 
     @PostMapping(path = "/add")
-    public String addCard (@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
-                                               @RequestParam Boolean is_contactless, @RequestParam Boolean is_ecom,
-                                               @RequestParam Boolean mail_order, @RequestParam String e_account_statement)
-    {
-        Card card = new Card();
-
-        User user = new User();
-        user.setName("Egecan");
-        user.setSurname("Ceylan");
-
-        card.setUser_id(user);
-        card.setCard_number(card_number);
-        card.setAccount_limit(account_limit);
-        card.setDebt(debt);
-        card.setIs_contactless(is_contactless);
-        card.setIs_ecom(is_ecom);
-        card.setMail_order(mail_order);
-        card.setE_account_statement(e_account_statement);
-
-        // Below code should be changed!
-        Date date = new Date();
-        card.setCutoff_date(date);
-        card.setPayment_due_date(date);
-        card.setExpire_date(date);
-
-        cardRepository.save(card);
-        return "Credit card is saved successfully :)";
+    public ResponseEntity<String> addCard(@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
+                                          @RequestParam Boolean is_contactless, @RequestParam Boolean is_ecom,
+                                          @RequestParam Boolean mail_order, @RequestParam String e_account_statement) {
+        try {
+            cardService.addCard(card_number, account_limit, debt, is_contactless, is_ecom, mail_order, e_account_statement);
+            return new ResponseEntity<>(
+                    "Card is saved successfully :)",
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    "Error occurred while saving card.",
+                    HttpStatus.BAD_REQUEST);
+        }
     }
 
 
     @GetMapping(path = "/all")
-    public Iterable<Card> getAllCards() {
-        return cardRepository.findAll();
+    public ResponseEntity<String> getAllCards() {
+        try {
+            cardService.getAllCards();
+            return new ResponseEntity<>(
+                    "Cards are returned successfully :)",
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    "Error occurred while returning the cards.",
+                    HttpStatus.BAD_REQUEST);
+        }
     }
 
 
-    @GetMapping(path="/info")
-    public Card getCard(@RequestBody Card card) {
-        //System.out.println(card.getCard_number());
-        String card_number = card.getCard_number();
-        return cardRepository.findById(card_number).get();
+    @GetMapping(path = "/info")
+    public ResponseEntity<String> getCard(@RequestBody Card card) {
+        try {
+            cardService.getCard(card);
+            return new ResponseEntity<>(
+                    "Card info is returned successfully :)",
+                    HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(
+                    "Error occurred while returning the card info.",
+                    HttpStatus.BAD_REQUEST);
+        }
+
     }
 }
