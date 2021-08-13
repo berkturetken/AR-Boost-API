@@ -1,6 +1,7 @@
 package com.example.arboostapi.controller;
 
 import com.example.arboostapi.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/user")
 public class UserController {
+    @Autowired
     private UserService userService;
 
     @PostMapping(path = "/add")
@@ -25,11 +27,10 @@ public class UserController {
     }
 
     @GetMapping(path = "/all")
-    public ResponseEntity<String> getAllUsers() {
+    public ResponseEntity getAllUsers() {
         try {
-            userService.getAllUsers();
             return new ResponseEntity<>(
-                    "Users are returned successfully :)",
+                    userService.getAllUsers(),
                     HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity<>(

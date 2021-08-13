@@ -1,26 +1,11 @@
 package com.example.arboostapi.service;
 
 import com.example.arboostapi.model.User;
-import com.example.arboostapi.repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 
-public class UserService {
-    @Autowired
-    private UserRepository userRepository;
 
-    public String addUser(String name, String surname) {
-        try {
-            User user = new User();
-            user.setName(name);
-            user.setSurname(surname);
-            userRepository.save(user);
-            return "User is saved successfully :)";
-        } catch (Exception e) {
-            return "Error occurred while saving user." + e.toString();
-        }
-    }
+public interface UserService {
 
-    public Iterable<User> getAllUsers() {
-        return userRepository.findAll();
-    }
+    String addUser(String name, String surname);
+
+    Iterable<User> getAllUsers();
 }
