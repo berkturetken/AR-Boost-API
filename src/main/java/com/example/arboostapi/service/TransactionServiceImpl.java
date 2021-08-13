@@ -1,5 +1,7 @@
 package com.example.arboostapi.service;
 
+import com.example.arboostapi.dto.mapper.TransactionMapper;
+import com.example.arboostapi.dto.model.TransactionDTO;
 import com.example.arboostapi.model.Card;
 import com.example.arboostapi.model.Transaction;
 import com.example.arboostapi.repository.CardRepository;
@@ -42,12 +44,13 @@ public class TransactionServiceImpl implements TransactionService {
         return transactionRepository.findAll();
     }
 
-    public List<Transaction> getCardTransaction(String card_number) {
-        List<Transaction> results = new ArrayList<>();
+    public List<TransactionDTO> getCardTransaction(String card_number) {
+        List<TransactionDTO> results = new ArrayList<>();
         Iterable<Transaction> allTransactions = transactionRepository.findAll();
         for (Transaction transaction : allTransactions) {
             if (transaction.getCard().getCard_number().equals(card_number)) {
-                results.add(transaction);
+                TransactionDTO dto = TransactionMapper.toTransactionDTO(transaction);
+                results.add(dto);
             }
         }
         return results;

@@ -1,5 +1,6 @@
 package com.example.arboostapi.service;
 
+import com.example.arboostapi.dto.model.TransactionDTO;
 import com.example.arboostapi.model.Transaction;
 import java.util.List;
 
@@ -9,6 +10,6 @@ public interface TransactionService {
 
     Iterable<Transaction> getAllTransactions();
 
-    List<Transaction> getCardTransaction(String card_number);
+    List<TransactionDTO> getCardTransaction(String card_number);
 
 }
