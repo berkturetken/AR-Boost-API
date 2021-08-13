@@ -1,17 +1,17 @@
 package com.example.arboostapi.controller;
 
 import com.example.arboostapi.service.CardService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Date;
 
 // Main functionality of a Controller: Take a request and return a response!
 
 @RestController
 @RequestMapping(path = "/card")
 public class CardController {
+    @Autowired
     private CardService cardService;
 
     // Alternative: Use constructor injection for the dependencies
@@ -41,14 +41,13 @@ public class CardController {
 
 
     @GetMapping(path = "/all")
-    public ResponseEntity<String> getAllCards() {
+    public ResponseEntity getAllCards() {
         try {
-            cardService.getAllCards();
-            return new ResponseEntity<>(
-                    "Cards are returned successfully :)",
+            return new ResponseEntity(
+                    cardService.getAllCards(),
                     HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(
+            return new ResponseEntity(
                     "Error occurred while returning the cards.",
                     HttpStatus.BAD_REQUEST);
         }
@@ -56,17 +55,15 @@ public class CardController {
 
 
     @GetMapping(path = "/info/{card_number}")
-    public ResponseEntity<String> getCard(@PathVariable String card_number) {
+    public ResponseEntity getCard(@PathVariable String card_number) {
         try {
-            cardService.getCard(card_number);
-            return new ResponseEntity<>(
-                    "Card info is returned successfully :)",
+            return new ResponseEntity(
+                    cardService.getCard(card_number),
                     HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(
-                    "Error occurred while returning the card info.",
+            return new ResponseEntity(
+                    "Error occurred while returning the cards.",
                     HttpStatus.BAD_REQUEST);
         }
-
     }
 }

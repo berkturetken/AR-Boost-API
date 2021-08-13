@@ -1,7 +1,7 @@
 package com.example.arboostapi.controller;
 
-import com.example.arboostapi.model.Card;
 import com.example.arboostapi.service.TransactionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(path = "/transaction")
 public class TransactionController {
+    @Autowired
     private TransactionService transactionService;
 
     @PostMapping(path = "/add")
@@ -28,29 +29,27 @@ public class TransactionController {
 
 
     @GetMapping(path = "/all")
-    public ResponseEntity<String> getAllTransactions() {
+    public ResponseEntity getAllTransactions() {
         try {
-            transactionService.getAllTransactions();
-            return new ResponseEntity<>(
-                    "Transactions are returned successfully :)",
+            return new ResponseEntity(
+                    transactionService.getAllTransactions(),
                     HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(
+            return new ResponseEntity(
                     "Error occurred while returning transactions.",
                     HttpStatus.BAD_REQUEST);
         }
     }
 
 
-    @GetMapping(path = "")
-    public ResponseEntity<String> getCardTransaction(@RequestBody Card card) {
+    @GetMapping(path = "/info/{card_number}")
+    public ResponseEntity getCardTransaction(@PathVariable String card_number) {
         try {
-            transactionService.getCardTransaction(card);
-            return new ResponseEntity<>(
-                    "Transactions of the card are returned successfully :)",
+            return new ResponseEntity(
+                    transactionService.getCardTransaction(card_number),
                     HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>(
+            return new ResponseEntity(
                     "Error occurred while returning transactions of the card.",
                     HttpStatus.BAD_REQUEST);
         }

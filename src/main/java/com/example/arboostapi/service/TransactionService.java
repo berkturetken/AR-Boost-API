@@ -1,55 +1,14 @@
 package com.example.arboostapi.service;
 
-import com.example.arboostapi.model.Card;
 import com.example.arboostapi.model.Transaction;
-import com.example.arboostapi.repository.CardRepository;
-import com.example.arboostapi.repository.TransactionRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class TransactionService {
-    @Autowired
-    private TransactionRepository transactionRepository;
-    @Autowired
-    private CardRepository cardRepository;
+public interface TransactionService {
 
-    public String addTransaction(String sector, String store, Float total_amount, Float world_point) {
-        Transaction transaction = new Transaction();
+    String addTransaction(String sector, String store, Float total_amount, Float world_point);
 
-        String card_number = "4943141382383861";
-        System.out.println(cardRepository.findById(card_number));
-        Card tempCard = cardRepository.findById(card_number).get();
+    Iterable<Transaction> getAllTransactions();
 
-        transaction.setCard(tempCard);
-        transaction.setSector(sector);
-        transaction.setStore(store);
-        transaction.setTotal_amount(total_amount);
-        transaction.setWorld_point(world_point);
+    List<Transaction> getCardTransaction(String card_number);
 
-        // For debugging purposes
-        Date date = new Date();
-        transaction.setDate(date);
-
-        transactionRepository.save(transaction);
-        return "Transaction is saved successfully :)";
-    }
-
-    public Iterable<Transaction> getAllTransactions() {
-        return transactionRepository.findAll();
-    }
-
-    public List<Transaction> getCardTransaction(Card card) {
-        List<Transaction> results = new ArrayList<>();
-        String card_number = card.getCard_number();
-        Iterable<Transaction> allTransactions = transactionRepository.findAll();
-        for (Transaction transaction : allTransactions) {
-            if (transaction.getCard().getCard_number().equals(card_number)) {
-                results.add(transaction);
-            }
-        }
-        return results;
-    }
 }
