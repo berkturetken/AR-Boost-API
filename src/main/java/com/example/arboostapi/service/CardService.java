@@ -8,5 +8,5 @@ public interface CardService {
 
     Iterable<Card> getAllCards();
 
-    Card getCard(String card_number);
+    Card getCard(String card_number, Integer id) throws Exception;
 }

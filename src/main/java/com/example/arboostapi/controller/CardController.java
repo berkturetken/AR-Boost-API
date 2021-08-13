@@ -55,14 +55,15 @@ public class CardController {
 
 
     @GetMapping(path = "/info/{card_number}")
-    public ResponseEntity getCard(@PathVariable String card_number) {
+    public ResponseEntity getCard(@PathVariable String card_number, @RequestParam Integer id) {
         try {
             return new ResponseEntity(
-                    cardService.getCard(card_number),
+                    cardService.getCard(card_number, id),
                     HttpStatus.OK);
         } catch (Exception e) {
+            String exception = e.toString().split(":")[1];
             return new ResponseEntity(
-                    "Error occurred while returning the cards.",
+                    "Error occurred while returning the cards."+ exception,
                     HttpStatus.BAD_REQUEST);
         }
     }

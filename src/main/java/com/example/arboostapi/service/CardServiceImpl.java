@@ -52,8 +52,11 @@ public class CardServiceImpl implements CardService {
     }
 
     @Override
-    public Card getCard(String card_number) {
+    public Card getCard(String card_number, Integer id) throws Exception {
         Card card = cardRepository.findById(card_number).get();
+        if (!card.getUser_id().getId().equals(id)) {
+            throw new Exception("The card does not belong to this user.");
+        }
         return card;
     }
 }
