@@ -1,20 +1,13 @@
 package com.example.arboostapi.controller;
 
-import com.example.arboostapi.model.User;
-import com.example.arboostapi.repository.UserRepository;
 import com.example.arboostapi.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/user")
 public class UserController {
-    @Autowired
-    private UserRepository userRepository;
-
     private UserService userService;
 
     @PostMapping(path = "/add")
@@ -43,6 +36,5 @@ public class UserController {
                     "Error occurred while returning users.",
                     HttpStatus.BAD_REQUEST);
         }
-
     }
 }

@@ -8,7 +8,7 @@ import java.util.Date;
 public class Transaction {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Integer transaction_id;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

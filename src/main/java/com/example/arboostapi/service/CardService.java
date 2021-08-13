@@ -14,9 +14,8 @@ public class CardService {
     @Autowired
     private CardRepository cardRepository;
 
-    public String addCard(@RequestParam String card_number, @RequestParam Float account_limit, @RequestParam Float debt,
-                          @RequestParam Boolean is_contactless, @RequestParam Boolean is_ecom,
-                          @RequestParam Boolean mail_order, @RequestParam String e_account_statement) {
+    public String addCard(String card_number, String type, Float account_limit, Float debt, Boolean is_contactless,
+                          Boolean is_ecom, Boolean mail_order, String e_account_statement) {
         try {
             Card card = new Card();
 
@@ -24,6 +23,7 @@ public class CardService {
             user.setName("Egecan");
             user.setSurname("Ceylan");
 
+            card.setType(type);
             card.setUser_id(user);
             card.setCard_number(card_number);
             card.setAccount_limit(account_limit);
@@ -50,8 +50,7 @@ public class CardService {
         return cardRepository.findAll();
     }
 
-    public Card getCard(@RequestBody Card card) {
-        String card_number = card.getCard_number();
+    public Card getCard(String card_number) {
         return cardRepository.findById(card_number).get();
     }
 }

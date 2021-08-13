@@ -1,27 +1,15 @@
 package com.example.arboostapi.controller;
 
 import com.example.arboostapi.model.Card;
-import com.example.arboostapi.model.Transaction;
-import com.example.arboostapi.repository.CardRepository;
-import com.example.arboostapi.repository.TransactionRepository;
 import com.example.arboostapi.service.TransactionService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @RestController
 @RequestMapping(path = "/transaction")
 public class TransactionController {
-    @Autowired
-    private TransactionRepository transactionRepository;
-    @Autowired
-    private CardRepository cardRepository;
-
     private TransactionService transactionService;
 
     @PostMapping(path = "/add")

@@ -5,24 +5,21 @@ import com.example.arboostapi.model.Transaction;
 import com.example.arboostapi.repository.CardRepository;
 import com.example.arboostapi.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class TransactionService {
-
     @Autowired
     private TransactionRepository transactionRepository;
     @Autowired
     private CardRepository cardRepository;
 
-    public String addTransaction(@RequestParam String sector, @RequestParam String store, @RequestParam Float total_amount, @RequestParam Float world_point) {
+    public String addTransaction(String sector, String store, Float total_amount, Float world_point) {
         Transaction transaction = new Transaction();
 
-        String card_number = "4943141382383860";
+        String card_number = "4943141382383861";
         System.out.println(cardRepository.findById(card_number));
         Card tempCard = cardRepository.findById(card_number).get();
 
@@ -44,7 +41,7 @@ public class TransactionService {
         return transactionRepository.findAll();
     }
 
-    public List<Transaction> getCardTransaction(@RequestBody Card card) {
+    public List<Transaction> getCardTransaction(Card card) {
         List<Transaction> results = new ArrayList<>();
         String card_number = card.getCard_number();
         Iterable<Transaction> allTransactions = transactionRepository.findAll();
@@ -55,6 +52,4 @@ public class TransactionService {
         }
         return results;
     }
-
-
 }
