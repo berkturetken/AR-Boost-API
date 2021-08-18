@@ -22,6 +22,7 @@ public class UserServiceImpl implements UserService{
         }
     }
 
+
     public Iterable<User> getAllUsers() {
         return userRepository.findAll();
     }

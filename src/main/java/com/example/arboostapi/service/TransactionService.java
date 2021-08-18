@@ -10,6 +10,6 @@ public interface TransactionService {
 
     Iterable<Transaction> getAllTransactions();
 
-    List<TransactionDTO> getCardTransaction(String card_number);
+    List<TransactionDTO> getCardTransaction(String card_number) throws Exception;
 
 }

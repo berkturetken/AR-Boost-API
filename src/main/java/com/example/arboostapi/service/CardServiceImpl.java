@@ -20,8 +20,8 @@ public class CardServiceImpl implements CardService {
             Card card = new Card();
 
             User user = new User();
-            user.setName("Egecan");
-            user.setSurname("Ceylan");
+            user.setName("Selçuk");
+            user.setSurname("Tuncer");
 
             card.setType(type);
             card.setUser_id(user);
@@ -46,16 +46,19 @@ public class CardServiceImpl implements CardService {
         }
     }
 
+
     @Override
     public Iterable<Card> getAllCards() {
         return cardRepository.findAll();
     }
 
+
     @Override
     public Card getCard(String card_number, Integer id) throws Exception {
-        Card card = cardRepository.findById(card_number).get();
+        Card card = cardRepository.findById(card_number).orElseThrow(() -> new RuntimeException("Hatalı kart numarası"));
+
         if (!card.getUser_id().getId().equals(id)) {
-            throw new Exception("The card does not belong to this user.");
+            throw new Exception("Bu kart numarası belirtilen kullanıcıya ait değildir.");
         }
         return card;
     }

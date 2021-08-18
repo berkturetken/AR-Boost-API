@@ -61,9 +61,10 @@ public class CardController {
                     cardService.getCard(card_number, id),
                     HttpStatus.OK);
         } catch (Exception e) {
+            // Get the second part (meaningful part) of the exception message
             String exception = e.toString().split(":")[1];
             return new ResponseEntity(
-                    "Error occurred while returning the cards."+ exception,
+                    "Kart bilgilerini getirirken bir hata oluştu:" + exception,
                     HttpStatus.BAD_REQUEST);
         }
     }

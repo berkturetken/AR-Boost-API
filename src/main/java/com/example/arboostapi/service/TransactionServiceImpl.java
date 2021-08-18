@@ -23,7 +23,7 @@ public class TransactionServiceImpl implements TransactionService {
     public String addTransaction(String sector, String store, Float total_amount, Float world_point) {
         Transaction transaction = new Transaction();
 
-        String card_number = "4943141382383861";
+        String card_number = "4943141334422544";
         Card tempCard = cardRepository.findById(card_number).get();
 
         transaction.setCard(tempCard);
@@ -40,11 +40,13 @@ public class TransactionServiceImpl implements TransactionService {
         return "Transaction is saved successfully :)";
     }
 
+
     public Iterable<Transaction> getAllTransactions() {
         return transactionRepository.findAll();
     }
 
-    public List<TransactionDTO> getCardTransaction(String card_number) {
+
+    public List<TransactionDTO> getCardTransaction(String card_number) throws Exception {
         List<TransactionDTO> results = new ArrayList<>();
         Iterable<Transaction> allTransactions = transactionRepository.findAll();
         for (Transaction transaction : allTransactions) {
@@ -53,6 +55,11 @@ public class TransactionServiceImpl implements TransactionService {
                 results.add(dto);
             }
         }
-        return results;
+        if (results.isEmpty()) {
+            throw new Exception("Bu karta ait hesap hareketi bulunamadı.");
+        }
+        else {
+            return results;
+        }
     }
 }

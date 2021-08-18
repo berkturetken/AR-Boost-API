@@ -49,8 +49,10 @@ public class TransactionController {
                     transactionService.getCardTransaction(card_number),
                     HttpStatus.OK);
         } catch (Exception e) {
+            // Get the second part (meaningful part) of the exception message
+            String exception = e.toString().split(":")[1];
             return new ResponseEntity(
-                    "Error occurred while returning transactions of the card.",
+                    "Hesap bilgilerini getirirken bir hata oluştu." + exception,
                     HttpStatus.BAD_REQUEST);
         }
     }

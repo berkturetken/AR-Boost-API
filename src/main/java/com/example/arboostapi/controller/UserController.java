@@ -26,6 +26,7 @@ public class UserController {
         }
     }
 
+
     @GetMapping(path = "/all")
     public ResponseEntity getAllUsers() {
         try {
