@@ -15,7 +15,8 @@ public class CardServiceImpl implements CardService {
 
     @Override
     public String addCard(String card_number, String type, Float account_limit, Float debt, Boolean is_contactless,
-                          Boolean is_ecom, Boolean mail_order, String e_account_statement) {
+                          Boolean is_ecom, Boolean mail_order, String e_account_statement, Float total_debt,
+                          Boolean is_automatic_payment_order, Boolean is_currency_account_statement) {
         try {
             Card card = new Card();
 
@@ -27,11 +28,14 @@ public class CardServiceImpl implements CardService {
             card.setUser_id(user);
             card.setCard_number(card_number);
             card.setAccount_limit(account_limit);
-            card.setDebt(debt);
+            card.setCurrent_debt(debt);
             card.setIs_contactless(is_contactless);
             card.setIs_ecom(is_ecom);
             card.setMail_order(mail_order);
             card.setE_account_statement(e_account_statement);
+            card.setTotal_debt(total_debt);
+            card.setIs_automatic_payment_order(is_automatic_payment_order);
+            card.setIs_currency_account_statement(is_currency_account_statement);
 
             // Below code should be changed!
             Date date = new Date();
@@ -45,7 +49,6 @@ public class CardServiceImpl implements CardService {
             return "Error occurred while saving the card." + e.toString();
         }
     }
-
 
     @Override
     public Iterable<Card> getAllCards() {

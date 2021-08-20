@@ -18,7 +18,7 @@ public class Card {
 
     private Float account_limit;
 
-    private Float debt;
+    private Float current_debt;
 
     private Date cutoff_date;
 
@@ -40,39 +40,12 @@ public class Card {
 
     private Float flexible_account_limit;
 
+    private Float total_debt;
 
-    // Getters and Setters
-    public String getType() {
-        return type;
-    }
+    private Boolean is_automatic_payment_order;
 
-    public void setType(String type) {
-        this.type = type;
-    }
+    private Boolean is_currency_account_statement;
 
-    public String getAccount_number() {
-        return account_number;
-    }
-
-    public void setAccount_number(String account_number) {
-        this.account_number = account_number;
-    }
-
-    public Float getBalance() {
-        return balance;
-    }
-
-    public void setBalance(Float balance) {
-        this.balance = balance;
-    }
-
-    public Float getFlexible_account_limit() {
-        return flexible_account_limit;
-    }
-
-    public void setFlexible_account_limit(Float flexible_account_limit) {
-        this.flexible_account_limit = flexible_account_limit;
-    }
 
     // Getters and Setters
     public User getUser_id() {
@@ -91,6 +64,14 @@ public class Card {
         this.card_number = card_number;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
     public Float getAccount_limit() {
         return account_limit;
     }
@@ -99,12 +80,12 @@ public class Card {
         this.account_limit = account_limit;
     }
 
-    public Float getDebt() {
-        return debt;
+    public Float getCurrent_debt() {
+        return current_debt;
     }
 
-    public void setDebt(Float debt) {
-        this.debt = debt;
+    public void setCurrent_debt(Float current_debt) {
+        this.current_debt = current_debt;
     }
 
     public Date getCutoff_date() {
@@ -161,5 +142,53 @@ public class Card {
 
     public void setE_account_statement(String e_account_statement) {
         this.e_account_statement = e_account_statement;
+    }
+
+    public String getAccount_number() {
+        return account_number;
+    }
+
+    public void setAccount_number(String account_number) {
+        this.account_number = account_number;
+    }
+
+    public Float getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Float balance) {
+        this.balance = balance;
+    }
+
+    public Float getFlexible_account_limit() {
+        return flexible_account_limit;
+    }
+
+    public void setFlexible_account_limit(Float flexible_account_limit) {
+        this.flexible_account_limit = flexible_account_limit;
+    }
+
+    public Float getTotal_debt() {
+        return total_debt;
+    }
+
+    public void setTotal_debt(Float total_debt) {
+        this.total_debt = total_debt;
+    }
+
+    public Boolean getIs_automatic_payment_order() {
+        return is_automatic_payment_order;
+    }
+
+    public void setIs_automatic_payment_order(Boolean is_automatic_payment_order) {
+        this.is_automatic_payment_order = is_automatic_payment_order;
+    }
+
+    public Boolean getIs_currency_account_statement() {
+        return is_currency_account_statement;
+    }
+
+    public void setIs_currency_account_statement(Boolean is_currency_account_statement) {
+        this.is_currency_account_statement = is_currency_account_statement;
     }
 }

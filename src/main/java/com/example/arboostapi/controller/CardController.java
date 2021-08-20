@@ -26,9 +26,12 @@ public class CardController {
     public ResponseEntity<String> addCard(@RequestParam String card_number, @RequestParam String type,
                                           @RequestParam Float account_limit, @RequestParam Float debt,
                                           @RequestParam Boolean is_contactless, @RequestParam Boolean is_ecom,
-                                          @RequestParam Boolean mail_order, @RequestParam String e_account_statement) {
+                                          @RequestParam Boolean mail_order, @RequestParam String e_account_statement,
+                                          @RequestParam Float total_debt,  @RequestParam Boolean is_automatic_payment_order,
+                                          @RequestParam Boolean is_currency_account_statement) {
         try {
-            cardService.addCard(card_number, type, account_limit, debt, is_contactless, is_ecom, mail_order, e_account_statement);
+            cardService.addCard(card_number, type, account_limit, debt, is_contactless, is_ecom, mail_order,
+                    e_account_statement, total_debt, is_automatic_payment_order, is_currency_account_statement);
             return new ResponseEntity<>(
                     "Card is saved successfully :)",
                     HttpStatus.OK);
